@@ -6,8 +6,7 @@ pragma solidity ^0.8.9;
  * @dev Smart contract for managing climate data oracles
  */
 contract Project {
-    address public owner;
-
+    address public owner
     struct DataPoint {
         uint256 timestamp;
         string dataType;
