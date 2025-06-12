@@ -65,7 +65,7 @@ contract Project {
             timestamp: block.timestamp,
             dataType: dataType,
             value: value,
-            location: location,
+            location: 
             provider: msg.sender,
             verified: false
         });
