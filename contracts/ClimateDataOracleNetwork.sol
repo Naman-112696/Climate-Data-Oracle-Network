@@ -58,7 +58,17 @@ contract Project {
             msg.sender,
             block.timestamp
         ));
-        
+           function submitData(
+        string memory dataType,
+        int256 value,
+        string memory location
+    ) public onlyAuthorizedProvider returns (bytes32) {
+        bytes32 dataId = keccak256(abi.encodePacked(
+            dataType,
+            value,
+            location,
+            msg.sender,
+            block.timestamp
         require(!dataIdExists[dataId], "Duplicate data");
 
         climateData[dataId] = DataPoint({
