@@ -8,7 +8,7 @@ pragma solidity ^0.8.9;
 contract Project {
     address public owner
     struct DataPoint {
-        uint256 timestamp;
+        uin
         string dataType;
         int256 value;
         string location;
