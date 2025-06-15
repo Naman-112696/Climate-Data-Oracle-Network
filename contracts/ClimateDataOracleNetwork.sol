@@ -4,16 +4,6 @@ pragma solidity ^0.8.9;
 /**
  * @title Climate Data Oracle Network
  * @dev Smart contract for managing climate data oracles
- */
-contract Project {
-    address public owner
-    struct DataPoint {
-        uin
-        string dataType;
-        int256 value;
-        string location;
-        address provider;
-        bool verified;
     }
 
     mapping(bytes32 => DataPoint) public climateData;
