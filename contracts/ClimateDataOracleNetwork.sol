@@ -15,8 +15,6 @@ pragma solidity ^0.8.9;
     event DataVerified(bytes32 indexed dataId, bool verified);
     event ProviderAuthorized(address indexed provider, bool status);
     event DataRevoked(bytes32 indexed dataId);
-
-    constructor() {
         owner = msg.sender;
     }
 
