@@ -12,7 +12,7 @@ pragma solidity ^0.8.9;
     mapping(bytes32 => bool) private dataIdExists;
 
     event DataSubmitted(bytes32 indexed dataId, string dataType, int256 value, string location);
-    event DataVerified(bytes32 indexed dataId, bool verified);
+    event DataVerified(bytes32 indexed dataId, bool verifie
     event ProviderAuthorized(address indexed provider, bool status);
     event DataRevoked(bytes32 indexed dataId);
         owner = msg.sender;
