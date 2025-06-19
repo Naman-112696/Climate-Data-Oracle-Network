@@ -88,17 +88,7 @@ pragma solidity ^0.8.9;
         string memory location,
         address provider,
         bool verified
-    ) {
-        DataPoint memory data = climateData[dataId];
-        require(data.timestamp > 0, "Data doesn't exist");
-
-        return (
-            data.timestamp,
-            data.dataType,
-            data.value,
-            data.location,
-            data.provider,
-            data.verified
+   
         );
     }
 
