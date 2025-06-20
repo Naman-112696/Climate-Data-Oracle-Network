@@ -19,7 +19,7 @@ pragma solidity ^0.8.9;
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner, "Only owner can call this function");
+        require(msg.sender == owner,
         _;
     }
 
