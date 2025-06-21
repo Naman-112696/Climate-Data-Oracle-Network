@@ -92,8 +92,7 @@ pragma solidity ^0.8.9;
         );
     }
 
-    function getDataCount() public view returns (uint256) {
-        return dataIds.length;
+    function getDataCount() public view returns (uint256
     }
 
     /// NEW FUNCTION 1: Return all data IDs
