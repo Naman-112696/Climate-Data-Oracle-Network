@@ -4,6 +4,17 @@ pragma solidity ^0.8.9;
 /**
  * @title Climate Data Oracle Network
  * @dev Smart contract for managing climate data oracles
+ */
+contract ClimateDataOracleNetwork {
+    address public owner;
+
+    struct DataPoint {
+        uint256 timestamp;
+        string dataType;
+        int256 value;
+        string location;
+        address provider;
+        bool verified;
     }
 
     mapping(bytes32 => DataPoint) public climateData;
@@ -11,15 +22,18 @@ pragma solidity ^0.8.9;
     mapping(address => bool) public authorizedProviders;
     mapping(bytes32 => bool) private dataIdExists;
 
+    // Events
     event DataSubmitted(bytes32 indexed dataId, string dataType, int256 value, string location);
-    event DataVerified(bytes32 indexed dataId, bool verifie
+    event DataVerified(bytes32 indexed dataId, bool verified);
     event ProviderAuthorized(address indexed provider, bool status);
     event DataRevoked(bytes32 indexed dataId);
+
+    constructor() {
         owner = msg.sender;
     }
 
     modifier onlyOwner() {
-        require(msg.sender == owner,
+        require(msg.sender == owner, "Only owner can call");
         _;
     }
 
@@ -46,24 +60,14 @@ pragma solidity ^0.8.9;
             msg.sender,
             block.timestamp
         ));
-           function submitData(
-        string memory dataType,
-        int256 value,
-        string memory location
-    ) public onlyAuthorizedProvider returns (bytes32) {
-        bytes32 dataId = keccak256(abi.encodePacked(
-            dataType,
-            value,
-            location,
-            msg.sender,
-            block.timestamp
+
         require(!dataIdExists[dataId], "Duplicate data");
 
         climateData[dataId] = DataPoint({
             timestamp: block.timestamp,
             dataType: dataType,
             value: value,
-            location: 
+            location: location,
             provider: msg.sender,
             verified: false
         });
@@ -88,11 +92,14 @@ pragma solidity ^0.8.9;
         string memory location,
         address provider,
         bool verified
-   
-        );
+    ) {
+        DataPoint memory d = climateData[dataId];
+        require(d.timestamp > 0, "Data not found");
+        return (d.timestamp, d.dataType, d.value, d.location, d.provider, d.verified);
     }
 
-    function getDataCount() public view returns (uint256
+    function getDataCount() public view returns (uint256) {
+        return dataIds.length;
     }
 
     /// NEW FUNCTION 1: Return all data IDs
